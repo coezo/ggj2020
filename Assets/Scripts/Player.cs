@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(movement * speed * Time.deltaTime);
+        transform.Translate(Vector3.Normalize(movement) * speed * Time.deltaTime);
     }
 
     private void Move()
@@ -42,6 +42,11 @@ public class Player : MonoBehaviour
 
         movement = Vector3.zero;
 
+        animator.SetFloat("LastMoveX", 0);
+        animator.SetFloat("LastMoveY", 0f);
+        animator.SetFloat("SpeedX", 0);
+        animator.SetFloat("SpeedY", 0);
+            
         if (inputX != 0 || inputY != 0)
         {
             animator.SetBool("Walking", true);
@@ -50,47 +55,24 @@ public class Player : MonoBehaviour
             //    playingWalkingSound = true;
             //    source.Play();
             //}
-            if (inputX > 0)
+            
+            if (inputX > 0 || inputX < 0)
             {
                 animator.SetFloat("LastMoveX", inputX);
-                animator.SetFloat("LastMoveY", 0f);
                 animator.SetFloat("SpeedX", inputX);
-                animator.SetFloat("SpeedY", 0);
                 facingDirection = new Vector3(inputX, 0, 0);
                 movement.x = inputX;
             }
-            else if (inputX < 0)
+            
+        
+            if (inputY > 0 || inputY < 0)
             {
-                animator.SetFloat("LastMoveX", inputX);
-                animator.SetFloat("LastMoveY", 0f);
-                animator.SetFloat("SpeedX", inputX);
-                animator.SetFloat("SpeedY", 0);
-                facingDirection = new Vector3(inputX, 0, 0);
-                movement.x = inputX;
-            }
-            else if (inputY > 0)
-            {
-                animator.SetFloat("LastMoveX", 0f);
                 animator.SetFloat("LastMoveY", inputY);
-                animator.SetFloat("SpeedX", 0);
                 animator.SetFloat("SpeedY", inputY);
                 facingDirection = new Vector3(0, inputY, 0);
                 movement.y = inputY;
             }
-            else if (inputY < 0)
-            {
-                animator.SetFloat("LastMoveX", 0f);
-                animator.SetFloat("LastMoveY", inputY);
-                animator.SetFloat("SpeedX", 0);
-                animator.SetFloat("SpeedY", inputY);
-                facingDirection = new Vector3(0, inputY, 0);
-                movement.y = inputY;
-            }
-            else
-            {
-                animator.SetFloat("SpeedX", 0);
-                animator.SetFloat("SpeedY", 0);
-            }
+           
         }
         else
         {
