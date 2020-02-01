@@ -5,7 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    public float speed;             //Floating point variable to store the player's movement speed.
+    public float speed;
+    public char controller;             //Floating point variable to store the player's movement speed.
 
     private Animator animator;
     private AudioSource source;
@@ -36,8 +37,8 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        inputX = Input.GetAxisRaw("Horizontal");
-        inputY = Input.GetAxisRaw("Vertical");
+        inputX = Input.GetAxisRaw("Horizontal" + controller);
+        inputY = Input.GetAxisRaw("Vertical" + controller);
 
         movement = Vector3.zero;
 

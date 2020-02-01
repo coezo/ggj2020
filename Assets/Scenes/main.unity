@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  controller: 66
 --- !u!95 &809888318
 Animator:
   serializedVersion: 3
@@ -316,6 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  controller: 65
 --- !u!95 &1003187579
 Animator:
   serializedVersion: 3
