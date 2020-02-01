@@ -10,18 +10,18 @@ public class Player : MonoBehaviour
 
     private Animator animator;
     private AudioSource source;
-    private bool playingWalkingSound;
+    // private bool playingWalkingSound;
 
     private float inputX, inputY;
     private Vector3 movement = new Vector3(0, 0, 0);
     private Vector3 facingDirection = new Vector3(0, 1, 0);
 
-    private bool finalFase = false;
-
+    private ItemScript.ItemType currentItem = ItemScript.ItemType.None;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -42,8 +42,6 @@ public class Player : MonoBehaviour
 
         movement = Vector3.zero;
 
-        animator.SetFloat("LastMoveX", 0);
-        animator.SetFloat("LastMoveY", 0f);
         animator.SetFloat("SpeedX", 0);
         animator.SetFloat("SpeedY", 0);
             
@@ -63,6 +61,9 @@ public class Player : MonoBehaviour
                 facingDirection = new Vector3(inputX, 0, 0);
                 movement.x = inputX;
             }
+            else {
+                animator.SetFloat("LastMoveX", 0f);
+            }
             
         
             if (inputY > 0 || inputY < 0)
@@ -72,13 +73,16 @@ public class Player : MonoBehaviour
                 facingDirection = new Vector3(0, inputY, 0);
                 movement.y = inputY;
             }
+            else {
+                animator.SetFloat("LastMoveY", 0f);
+            }
            
         }
         else
         {
             animator.SetBool("Walking", false);
             //source.Stop();
-            playingWalkingSound = false;
+            // playingWalkingSound = false;
         }
 
     }
@@ -87,4 +91,19 @@ public class Player : MonoBehaviour
     {
         return inputX != 0 || inputY != 0;
     }
+
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.gameObject.tag == "Item")
+        {
+            var itemScript = collider.gameObject.GetComponent<ItemScript>();
+            currentItem = itemScript.itemType;
+            Debug.Log(collider.gameObject.GetComponent<SpriteRenderer>().sprite);
+            Debug.Log(transform.GetChild(0).GetComponent<SpriteRenderer>());
+        
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = collider.gameObject.GetComponent<SpriteRenderer>().sprite;
+            GameObject.Destroy(collider.gameObject);
+        }
+    }
+
 }
