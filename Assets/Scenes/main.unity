@@ -599,6 +599,7 @@ GameObject:
   - component: {fileID: 809888317}
   - component: {fileID: 809888322}
   - component: {fileID: 809888321}
+  - component: {fileID: 809888323}
   m_Layer: 0
   m_Name: Gato
   m_TagString: Untagged
@@ -748,6 +749,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.23977412, y: 0.13949186}
   m_EdgeRadius: 0
+--- !u!114 &809888323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809888316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bcac43de4fdf45c1b01ca9a8474af0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1003187577
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +775,7 @@ GameObject:
   - component: {fileID: 1003187578}
   - component: {fileID: 1003187583}
   - component: {fileID: 1003187582}
+  - component: {fileID: 1003187584}
   m_Layer: 0
   m_Name: Cachorro
   m_TagString: Untagged
@@ -911,6 +925,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.22640318, y: 0.15286258}
   m_EdgeRadius: 0
+--- !u!114 &1003187584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003187577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bcac43de4fdf45c1b01ca9a8474af0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1023000215
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,7 +990,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -5000
   m_Sprite: {fileID: 21300000, guid: 8600edf1b88da4e0abd7a0f1b9e5fbda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
