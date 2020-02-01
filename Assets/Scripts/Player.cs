@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
         Move();
     }
 
+    void FixedUpdate()
+    {
+        transform.Translate(movement * speed * Time.deltaTime);
+    }
+
     private void Move()
     {
         inputX = Input.GetAxisRaw("Horizontal");
@@ -93,7 +98,6 @@ public class Player : MonoBehaviour
             playingWalkingSound = false;
         }
 
-        transform.Translate(movement * speed * Time.deltaTime);
     }
 
     public bool IsMoving()
