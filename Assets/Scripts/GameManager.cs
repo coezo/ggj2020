@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,19 +40,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
     }
 
     void Start()
     {
+        Time.timeScale = 1.0f;
         randomGen = new System.Random();
         itemPositionsComponent = itemSpawnPositions.transform;
     }
@@ -62,15 +56,17 @@ public class GameManager : MonoBehaviour
         if(!finishingGame)
         {
             UpdateRunningGame();
+
+            if (gameTime <= 0)
+            {
+                gameTime = 0;
+                background.Stop();
+                win.Play();
+                FinishGame();
+            }
         }
 
-        if(gameTime <= 0)
-        {
-            gameTime = 0;
-            background.Stop();
-            win.Play();
-            FinishGame();
-        }
+        
     }
 
     void UpdateRunningGame()
@@ -147,6 +143,13 @@ public class GameManager : MonoBehaviour
             var instance = Instantiate(item, positionContainer.transform.position, Quaternion.identity);
             instance.transform.parent = positionContainer.transform;
         }
+    }
+
+    public void RestartGame()
+    {
+        background.Stop();
+        win.Stop();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }
