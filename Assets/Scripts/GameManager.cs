@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public GameObject CatHouse;
     public GameObject DogHouse;
 
+    public AudioSource background;
+    public AudioSource win;
+
     public Sprite[] sprites;
 
     const float SPAWN_TIME = 5.0f;
@@ -64,6 +67,8 @@ public class GameManager : MonoBehaviour
         if(gameTime <= 0)
         {
             gameTime = 0;
+            background.Stop();
+            win.Play();
             FinishGame();
         }
     }
