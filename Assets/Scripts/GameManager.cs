@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
    
     public GameObject hammer;
     public GameObject ironCoin;
     public GameObject wood;
     public GameObject wool;
+
+    public Sprite[] sprites;
 
     const float SPAWN_TIME = 5.0f;
     public float spawnTime = SPAWN_TIME;
@@ -16,6 +19,20 @@ public class GameManager : MonoBehaviour
 
     private System.Random randomGen;
     private Transform itemPositionsComponent;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         randomGen = new System.Random();
@@ -43,8 +60,7 @@ public class GameManager : MonoBehaviour
            }
            else if (rand < 15)
            {
-              // item = ironCoin;
-              item = wool;
+              item = ironCoin;
            }
            else if (rand < 35)
            {

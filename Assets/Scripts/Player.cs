@@ -16,13 +16,14 @@ public class Player : MonoBehaviour
     private Vector3 movement = new Vector3(0, 0, 0);
     private Vector3 facingDirection = new Vector3(0, 1, 0);
 
+    private SpriteRenderer itemCarregadoSpriteRenderer;
     private ItemScript.ItemType currentItem = ItemScript.ItemType.None;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
-        
+        itemCarregadoSpriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -90,9 +91,14 @@ public class Player : MonoBehaviour
         {
             if(currentItem != ItemScript.ItemType.None)
             {
-                var item = ItemScript.ItemFromType(currentItem);
-                var instance = Instantiate(item, transform.position, Quaternion.identity); 
-                instance.GetComponent<ItemScript>().Throw(new Vector3(1, 0, 0));
+                var item = Resources.Load<GameObject>("Prefabs/ItemLancado");
+                var itemLancadoScript = Instantiate(item, transform.position + facingDirection * 0.5f, Quaternion.identity).GetComponent<ItemLancado>();
+                itemLancadoScript.Throw(
+                    currentItem,
+                    facingDirection
+                );
+                currentItem = ItemScript.ItemType.None;
+                itemCarregadoSpriteRenderer.sprite = null;
             }
         }
 
@@ -105,15 +111,19 @@ public class Player : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.gameObject.tag == "Item")
+        switch(collider.gameObject.tag)
         {
-            var itemScript = collider.gameObject.GetComponent<ItemScript>();
-            currentItem = itemScript.itemType;
-            Debug.Log(collider.gameObject.GetComponent<SpriteRenderer>().sprite);
-            Debug.Log(transform.GetChild(0).GetComponent<SpriteRenderer>());
-        
-            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = collider.gameObject.GetComponent<SpriteRenderer>().sprite;
-            GameObject.Destroy(collider.gameObject);
+            case "Item":
+                var itemScript = collider.gameObject.GetComponent<ItemScript>();
+                currentItem = itemScript.itemType;
+                Debug.Log("Tipo " + currentItem + " - " + (int)currentItem);
+                itemCarregadoSpriteRenderer.sprite = GameManager.Instance.sprites[(int)currentItem];
+                GameObject.Destroy(collider.gameObject);
+                break;
+            case "ItemLancado":
+                Debug.Log("Player atingido");
+                // Stun
+                break;
         }
     }
 
