@@ -8,14 +8,14 @@ public class HouseScript : MonoBehaviour
     private Animator animator;
     private SpriteRenderer nivelSpriteRenderer;
 
-    public int[3] Inventory;
-    private int[3] LifePerLevel = {1, 2, 3};
+    // public int[3] Inventory;
+    // private int[3] LifePerLevel = {1, 2, 3};
 
     void Awake()
     {
         level = 1;
         animator = GetComponent<Animator>();
-        nivelSpriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        // nivelSpriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -25,8 +25,8 @@ public class HouseScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        switch(collider.gameObject.tag)
-        {
+        // switch(collider.gameObject.tag)
+        // {
             // case "Item":
             //     var itemScript = collider.gameObject.GetComponent<ItemScript>();
             //     currentItem = itemScript.itemType;
@@ -38,7 +38,7 @@ public class HouseScript : MonoBehaviour
             //     Debug.Log("Player atingido");
             //     // Stun
             //     break;
-        }
+        // }
     }
 
 }
