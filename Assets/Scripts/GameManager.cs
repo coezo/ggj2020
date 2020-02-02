@@ -52,15 +52,15 @@ public class GameManager : MonoBehaviour
             // float yAxis = UnityEngine.Random.Range(position.y - range, position.y + range);
             int rand = randomGen.Next(0, 50);
             GameObject item = null;
-            if (rand < 5)
+            if (rand < 2)
             {
                 item = hammer;
             }
-            else if (rand < 15)
+            else if (rand < 8)
             {
                 item = ironCoin;
             }
-            else if (rand < 35)
+            else if (rand < 20)
             {
                 item = wood;
             }

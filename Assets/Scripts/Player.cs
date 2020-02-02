@@ -97,10 +97,10 @@ public class Player : MonoBehaviour
                 var item = Resources.Load<GameObject>("Prefabs/ItemLancado");
                 var itemLancadoScript = Instantiate(
                         item,
-                        transform.position + facingDirection * 0.5f,
+                        transform.position + facingDirection * 0.1f,
                         Quaternion.identity
                     ).GetComponent<ItemLancado>();
-                itemLancadoScript.Throw(currentItem, facingDirection);
+                itemLancadoScript.Throw(controller, currentItem, facingDirection);
                 currentItem = ItemScript.ItemType.None;
                 itemCarregadoSpriteRenderer.sprite = null;
             }
@@ -124,18 +124,23 @@ public class Player : MonoBehaviour
                 GameObject.Destroy(collider.gameObject);
                 break;
             case "ItemLancado":
-                StartCoroutine(Stun());
+                var itemLancado = collider.gameObject.GetComponent<ItemLancado>();
+                if(itemLancado.owner != controller)
+                {
+                    GameObject.Destroy(collider.gameObject);
+                    StartCoroutine(Stun(itemLancado));
+                }
                 break;
         }
     }
 
-    private IEnumerator Stun()
+    private IEnumerator Stun(ItemLancado itemLancado)
     {
         stunned = true;
         movement = Vector3.zero;
         animator.SetBool("Stunned", stunned);
 
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(itemLancado.GetStunTime());
 
         stunned = false;
         animator.SetBool("Stunned", stunned);
