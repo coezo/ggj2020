@@ -15,41 +15,39 @@ public class ItemScript : MonoBehaviour
     };
 
     public ItemType itemType;
+    public Vector3 velocity;
+    public float speed;
+
+    public static GameObject ItemFromType(ItemType type)
+    {
+        switch(type)
+        {
+          case ItemType.Hammer: return Resources.Load<GameObject>("Prefabs/Hammer");
+          // case ItemType.IronCoin: return Resources.Load<GameObject>("Prefabs/IronCoin");
+          case ItemType.Wood: return Resources.Load<GameObject>("Prefabs/Wood");
+          case ItemType.Wool: return Resources.Load<GameObject>("Prefabs/Wool");
+          default: return null;
+        }
+    }
 
 
     void Start()
     {
           // transform.Translate(position);
-          // switch(itemType)
-          // {
-          //   case ItemType.Hammer:
-          //   {
-              
-          //   } break;
+          
+    }
 
-          //   case ItemType.IronCoin:
-          //   {
-              
-          //   } break;
-
-          //   case ItemType.Wood:
-          //   {
-              
-          //   } break;
-
-          //   case ItemType.Wool:
-          //   {
-
-          //   } break;
-
-          // }
+    public void Throw(Vector3 direction)
+    {
+        // tansform.Rotate()
+        velocity = new Vector3(1,0,0);
+        GetComponent<Collider2D>().isTrigger = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        
+        transform.Translate(velocity * speed * Time.deltaTime);
     }
 
 

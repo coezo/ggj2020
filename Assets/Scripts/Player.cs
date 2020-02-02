@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private Vector3 facingDirection = new Vector3(0, 1, 0);
 
     private ItemScript.ItemType currentItem = ItemScript.ItemType.None;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +84,16 @@ public class Player : MonoBehaviour
             animator.SetBool("Walking", false);
             //source.Stop();
             // playingWalkingSound = false;
+        }
+
+        if (Input.GetButtonDown("Interact" + controller))
+        {
+            if(currentItem != ItemScript.ItemType.None)
+            {
+                var item = ItemScript.ItemFromType(currentItem);
+                var instance = Instantiate(item, transform.position, Quaternion.identity); 
+                instance.GetComponent<ItemScript>().Throw(new Vector3(1, 0, 0));
+            }
         }
 
     }
