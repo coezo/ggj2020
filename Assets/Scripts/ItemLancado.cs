@@ -41,9 +41,9 @@ public class ItemLancado : MonoBehaviour
     {
         switch(itemType)
         {
-            case ItemScript.ItemType.Hammer: return 4.0f;
-            case ItemScript.ItemType.Wool: return 1.0f;
-            case ItemScript.ItemType.Wood: return 2.0f;
+            case ItemScript.ItemType.Hammer: return 5.0f;
+            case ItemScript.ItemType.Wool: return 0.5f;
+            case ItemScript.ItemType.Wood: return 1.0f;
             case ItemScript.ItemType.IronCoin: return 3.0f;
             default: return 0.0f;
         }
