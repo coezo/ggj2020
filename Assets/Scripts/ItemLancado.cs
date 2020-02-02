@@ -20,9 +20,10 @@ public class ItemLancado : MonoBehaviour
         transform.Translate(velocity * speed * Time.deltaTime);
     }
 
-    public void Throw(Sprite sprite, ItemScript.ItemType type, Vector3 direction)
+    public void Throw(ItemScript.ItemType type, Vector3 direction)
     {
-        spriteRenderer.sprite = sprite;
+        Debug.Log("Tipo " + type + " - " + (int)type);
+        spriteRenderer.sprite = GameManager.Instance.sprites[(int)type];
         itemType = type;
         velocity = direction;
     }

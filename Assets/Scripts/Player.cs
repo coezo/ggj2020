@@ -94,7 +94,6 @@ public class Player : MonoBehaviour
                 var item = Resources.Load<GameObject>("Prefabs/ItemLancado");
                 var itemLancadoScript = Instantiate(item, transform.position + facingDirection * 0.5f, Quaternion.identity).GetComponent<ItemLancado>();
                 itemLancadoScript.Throw(
-                    transform.GetChild(0).GetComponent<SpriteRenderer>().sprite,
                     currentItem,
                     facingDirection
                 );
@@ -117,7 +116,8 @@ public class Player : MonoBehaviour
             case "Item":
                 var itemScript = collider.gameObject.GetComponent<ItemScript>();
                 currentItem = itemScript.itemType;
-                itemCarregadoSpriteRenderer.sprite = collider.gameObject.GetComponent<SpriteRenderer>().sprite;
+                Debug.Log("Tipo " + currentItem + " - " + (int)currentItem);
+                itemCarregadoSpriteRenderer.sprite = GameManager.Instance.sprites[(int)currentItem];
                 GameObject.Destroy(collider.gameObject);
                 break;
             case "ItemLancado":

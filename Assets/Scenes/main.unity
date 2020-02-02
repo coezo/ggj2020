@@ -677,6 +677,11 @@ MonoBehaviour:
     type: 3}
   wood: {fileID: 4493911102979356661, guid: a227d63bcd26844a09595d16ec2ef80e, type: 3}
   wool: {fileID: 4326612960553721405, guid: dd84de4d5ac0c4e45b31c1078d0312a6, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 7004c2a5cf08e46469266705911fec72, type: 3}
+  - {fileID: 21300000, guid: 36a391049087d94478aab5dc9009dffe, type: 3}
+  - {fileID: 21300000, guid: b55fca4f21b03ea49b2f62a8745a0ee2, type: 3}
+  - {fileID: 21300000, guid: 1704a01d6e071bf47882e53e1bab8dcc, type: 3}
   spawnTime: 1
   range: 0.2
 --- !u!4 &808460662
