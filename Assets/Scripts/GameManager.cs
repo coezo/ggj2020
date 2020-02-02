@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,19 +12,27 @@ public class GameManager : MonoBehaviour
     public GameObject wood;
     public GameObject wool;
 
+    public GameObject CatWon;
+    public GameObject DogWon;
+
+    public GameObject CatHouse;
+    public GameObject DogHouse;
+
     public Sprite[] sprites;
 
     const float SPAWN_TIME = 5.0f;
     public float spawnTime = SPAWN_TIME;
     public float range = 0.2f;
 
-    public float gameTime = 99.0f; //99s
+    public float gameTime;
 
     private System.Random randomGen;
     public GameObject itemSpawnPositions;
     private Transform itemPositionsComponent;
 
     private bool finishingGame = false;
+
+    public GameObject timer;
 
     private void Awake()
     {
@@ -63,6 +72,7 @@ public class GameManager : MonoBehaviour
     {
         spawnTime -= Time.deltaTime;
         gameTime -= Time.deltaTime;
+        timer.GetComponent<Text>().text = "" + (int)gameTime;
 
         if (spawnTime <= 0)
         {
@@ -97,6 +107,14 @@ public class GameManager : MonoBehaviour
     private void FinishGame()
     {
        finishingGame = true;
+       Time.timeScale = 0;
+       if(true){
+          CatWon.SetActive(true);
+          DogWon.SetActive(false);
+       }else{
+          DogWon.SetActive(false);
+          CatWon.SetActive(true);
+       }
 
     }
 
