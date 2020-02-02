@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4326612960553721406}
   - component: {fileID: 4326612960553721407}
   - component: {fileID: 4326612960553721404}
+  - component: {fileID: -8560343122894884336}
   m_Layer: 0
   m_Name: Wool
   m_TagString: Item
@@ -94,6 +95,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 4
+  velocity: {x: 0, y: 0, z: 0}
+  speed: 0
 --- !u!58 &4326612960553721404
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -110,3 +113,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
+--- !u!114 &-8560343122894884336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4326612960553721405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bcac43de4fdf45c1b01ca9a8474af0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

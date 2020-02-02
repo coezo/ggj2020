@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     public GameObject wood;
     public GameObject wool;
 
-    public float spawnTime = 1.0f;
+    const float SPAWN_TIME = 5.0f;
+    public float spawnTime = SPAWN_TIME;
     public float range = 0.2f;
 
     private System.Random randomGen;
@@ -27,13 +28,13 @@ public class GameManager : MonoBehaviour
         spawnTime -= Time.deltaTime;
         if(spawnTime <= 0)
         {
-           spawnTime = 1.0f;
+           spawnTime = SPAWN_TIME;
            int children = itemPositionsComponent.childCount;
            int postionIndex = randomGen.Next(0, children);
             
            var position = itemPositionsComponent.GetChild(postionIndex).transform.position;
-           float xAxis = UnityEngine.Random.Range(position.x - range, position.x + range);
-           float yAxis = UnityEngine.Random.Range(position.y - range, position.y + range);
+           // float xAxis = UnityEngine.Random.Range(position.x - range, position.x + range);
+           // float yAxis = UnityEngine.Random.Range(position.y - range, position.y + range);
            int rand = randomGen.Next(0, 50);
            GameObject item = null;
            if(rand < 5)
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
               item = wool;
            }
 
-           Instantiate(item, new Vector3(xAxis, yAxis, 0.0f), Quaternion.identity); 
+           Instantiate(item, new Vector3(position.x, position.y, 0.0f), Quaternion.identity); 
         } 
     }
 
