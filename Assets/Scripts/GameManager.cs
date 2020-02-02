@@ -17,9 +17,13 @@ public class GameManager : MonoBehaviour
     public float spawnTime = SPAWN_TIME;
     public float range = 0.2f;
 
+    public float gameTime = 99.0f; //99s
+
     private System.Random randomGen;
     public GameObject itemSpawnPositions;
     private Transform itemPositionsComponent;
+
+    private bool finishingGame = false;
 
     private void Awake()
     {
@@ -43,7 +47,23 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!finishingGame)
+        {
+            UpdateRunningGame();
+        }
+
+        if(gameTime <= 0)
+        {
+            gameTime = 0;
+            FinishGame();
+        }
+    }
+
+    void UpdateRunningGame()
+    {
         spawnTime -= Time.deltaTime;
+        gameTime -= Time.deltaTime;
+
         if (spawnTime <= 0)
         {
             spawnTime = SPAWN_TIME;
@@ -71,6 +91,13 @@ public class GameManager : MonoBehaviour
 
             SpawnItem(item);
         }
+
+    }
+
+    private void FinishGame()
+    {
+       finishingGame = true;
+
     }
 
     private void SpawnItem(GameObject item)
