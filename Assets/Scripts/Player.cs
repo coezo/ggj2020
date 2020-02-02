@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private AudioSource source;
     // private bool playingWalkingSound;
 
+    private bool stunned;
     private float inputX, inputY;
     private Vector3 movement = new Vector3(0, 0, 0);
     private Vector3 facingDirection = new Vector3(0, 1, 0);
@@ -29,7 +30,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (!stunned) {
+            Move();
+        }
     }
 
     void FixedUpdate()
@@ -92,11 +95,12 @@ public class Player : MonoBehaviour
             if(currentItem != ItemScript.ItemType.None)
             {
                 var item = Resources.Load<GameObject>("Prefabs/ItemLancado");
-                var itemLancadoScript = Instantiate(item, transform.position + facingDirection * 0.5f, Quaternion.identity).GetComponent<ItemLancado>();
-                itemLancadoScript.Throw(
-                    currentItem,
-                    facingDirection
-                );
+                var itemLancadoScript = Instantiate(
+                        item,
+                        transform.position + facingDirection * 0.5f,
+                        Quaternion.identity
+                    ).GetComponent<ItemLancado>();
+                itemLancadoScript.Throw(currentItem, facingDirection);
                 currentItem = ItemScript.ItemType.None;
                 itemCarregadoSpriteRenderer.sprite = null;
             }
@@ -116,15 +120,25 @@ public class Player : MonoBehaviour
             case "Item":
                 var itemScript = collider.gameObject.GetComponent<ItemScript>();
                 currentItem = itemScript.itemType;
-                Debug.Log("Tipo " + currentItem + " - " + (int)currentItem);
                 itemCarregadoSpriteRenderer.sprite = GameManager.Instance.sprites[(int)currentItem];
                 GameObject.Destroy(collider.gameObject);
                 break;
             case "ItemLancado":
-                Debug.Log("Player atingido");
-                // Stun
+                StartCoroutine(Stun());
                 break;
         }
+    }
+
+    private IEnumerator Stun()
+    {
+        stunned = true;
+        movement = Vector3.zero;
+        animator.SetBool("Stunned", stunned);
+
+        yield return new WaitForSeconds(3.0f);
+
+        stunned = false;
+        animator.SetBool("Stunned", stunned);
     }
 
 }
