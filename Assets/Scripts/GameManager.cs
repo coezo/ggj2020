@@ -106,15 +106,28 @@ public class GameManager : MonoBehaviour
 
     private void FinishGame()
     {
-       finishingGame = true;
-       Time.timeScale = 0;
-       if(true){
-          CatWon.SetActive(true);
-          DogWon.SetActive(false);
-       }else{
-          DogWon.SetActive(false);
-          CatWon.SetActive(true);
-       }
+        finishingGame = true;
+        Time.timeScale = 0;
+        bool win;
+        var catLevel = CatHouse.GetComponent<HouseScript>().upgradeLevel;
+        var dogLevel = DogHouse.GetComponent<HouseScript>().upgradeLevel;
+
+        if(catLevel == dogLevel)
+        {
+            win = CatHouse.GetComponent<HouseScript>().life > DogHouse.GetComponent<HouseScript>().life;
+        }
+        else
+        {
+            win = catLevel > dogLevel;
+        }
+
+        if (win){
+            CatWon.SetActive(true);
+            DogWon.SetActive(false);
+        }else{
+            CatWon.SetActive(false);
+            DogWon.SetActive(true);
+        }
 
     }
 

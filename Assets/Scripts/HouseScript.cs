@@ -11,7 +11,7 @@ public class HouseScript : MonoBehaviour
     public Sprite[] spritesUpgrades;
     public float life;
     public float lifeUpgrade;
-    private int upgradeLevel;
+    public int upgradeLevel;
 
     public int inventoryWool;
     public int inventoryWood;
@@ -75,7 +75,7 @@ public class HouseScript : MonoBehaviour
         if(upgradeLevel > 0)
         {
             lifeUpgrade -= damage;
-            if(lifeUpgrade < 0)
+            if(lifeUpgrade <= 0)
             {
                 lifeUpgrade = 0;
                 Downgrade();
@@ -131,6 +131,7 @@ public class HouseScript : MonoBehaviour
                 }
                 break;
             case ItemScript.ItemType.Hammer:
+                success = true;
                 Upgrade();
                 break;
         }
@@ -145,7 +146,24 @@ public class HouseScript : MonoBehaviour
             case 0:
                 if (life == 0)
                 {
-
+                    if (inventoryWool == 3)
+                    {
+                        life++;
+                        spriteRenderer.sprite = spritesCasa[1];
+                        inventoryWool = 0;
+                    }
+                    else if (inventoryWood == 3)
+                    {
+                        life++;
+                        spriteRenderer.sprite = spritesCasa[1];
+                        inventoryWood = 0;
+                    }
+                    else if (inventoryIron == 3)
+                    {
+                        life++;
+                        spriteRenderer.sprite = spritesCasa[1];
+                        inventoryIron = 0;
+                    }
                 }
                 else
                 {
