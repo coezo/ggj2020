@@ -22,7 +22,6 @@ public class ItemLancado : MonoBehaviour
 
     public void Throw(ItemScript.ItemType type, Vector3 direction)
     {
-        Debug.Log("Tipo " + type + " - " + (int)type);
         spriteRenderer.sprite = GameManager.Instance.sprites[(int)type];
         itemType = type;
         velocity = direction;
@@ -30,7 +29,6 @@ public class ItemLancado : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("colidiu com outra coisa");
         Destroy(gameObject);
     }
 }
