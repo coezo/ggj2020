@@ -49,5 +49,15 @@ public class ItemLancado : MonoBehaviour
         }
     }
 
-
+    public float GetDamage()
+    {
+        if(itemType == ItemScript.ItemType.Hammer)
+        {
+            return 3.0f; 
+        }
+        else
+        {
+            return 1.0f;
+        }
+    }
 }

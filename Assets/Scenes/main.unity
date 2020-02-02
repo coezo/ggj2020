@@ -1097,6 +1097,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1704a01d6e071bf47882e53e1bab8dcc, type: 3}
   spawnTime: 1
   range: 0.2
+  gameTime: 99
   itemSpawnPositions: {fileID: 905503243}
 --- !u!4 &808460662
 Transform:
@@ -2107,9 +2108,10 @@ GameObject:
   - component: {fileID: 1261723539}
   - component: {fileID: 1261723538}
   - component: {fileID: 1261723540}
+  - component: {fileID: 1261723541}
   m_Layer: 0
   m_Name: CasaCachorro
-  m_TagString: Untagged
+  m_TagString: Casa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2202,6 +2204,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.86871505, y: 0.40053844}
   m_EdgeRadius: 0
+--- !u!114 &1261723541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261723537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ff1ed3d2a0f4d82a031ad7ccee4e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: 65
+  spritesCasa:
+  - {fileID: 21300000, guid: 4415edfd40e6c4ad9a53392000e8e3db, type: 3}
+  - {fileID: 21300000, guid: b29cf5bee8c5448cbb27f8bf96b2b979, type: 3}
+  spritesUpgrades:
+  - {fileID: 21300000, guid: 36ac4a6d1c9004d56b6a6e1d3c960480, type: 3}
+  - {fileID: 21300000, guid: d8b6b716437274ebc9f04abeba338c3e, type: 3}
+  - {fileID: 21300000, guid: 91c8f7de758404654aef625b0614116c, type: 3}
+  life: 1
+  lifeUpgrade: 0
+  inventoryWool: 0
+  inventoryWood: 0
+  inventoryIron: 0
 --- !u!1 &1268342941
 GameObject:
   m_ObjectHideFlags: 0
@@ -2312,9 +2339,10 @@ GameObject:
   - component: {fileID: 1454671394}
   - component: {fileID: 1454671393}
   - component: {fileID: 1454671395}
+  - component: {fileID: 1454671396}
   m_Layer: 0
   m_Name: CasaGato
-  m_TagString: Untagged
+  m_TagString: Casa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2356,7 +2384,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1000
-  m_Sprite: {fileID: 21300000, guid: 9e467916e1c5743548485e5848ba9eba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2699171b207d4bb595f85635c472093, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2407,6 +2435,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7995701, y: 0.607913}
   m_EdgeRadius: 0
+--- !u!114 &1454671396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454671392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ff1ed3d2a0f4d82a031ad7ccee4e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: 66
+  spritesCasa:
+  - {fileID: 21300000, guid: 9e467916e1c5743548485e5848ba9eba, type: 3}
+  - {fileID: 21300000, guid: a2699171b207d4bb595f85635c472093, type: 3}
+  spritesUpgrades:
+  - {fileID: 21300000, guid: f0ee4af0273d246499e5cdd5f77d5029, type: 3}
+  - {fileID: 21300000, guid: 72c6429c37c10b940bf4609534b0846f, type: 3}
+  - {fileID: 21300000, guid: d6608085aa8a9c74798077915b770292, type: 3}
+  life: 1
+  lifeUpgrade: 0
+  inventoryWool: 0
+  inventoryWood: 0
+  inventoryIron: 0
 --- !u!1 &1532708979
 GameObject:
   m_ObjectHideFlags: 0

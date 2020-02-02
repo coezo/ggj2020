@@ -101,8 +101,7 @@ public class Player : MonoBehaviour
                         Quaternion.identity
                     ).GetComponent<ItemLancado>();
                 itemLancadoScript.Throw(controller, currentItem, facingDirection);
-                currentItem = ItemScript.ItemType.None;
-                itemCarregadoSpriteRenderer.sprite = null;
+                ResetItemCarregado();
             }
         }
 
@@ -111,6 +110,21 @@ public class Player : MonoBehaviour
     public bool IsMoving()
     {
         return inputX != 0 || inputY != 0;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var gameObject = collision.gameObject;
+        if (gameObject.CompareTag("Casa") && gameObject.GetComponent<HouseScript>().owner == controller)
+        {
+            if (currentItem != ItemScript.ItemType.None)
+            {
+                if (gameObject.GetComponent<HouseScript>().StoreItem(currentItem))
+                {
+                    ResetItemCarregado();
+                }
+            }
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
@@ -144,6 +158,12 @@ public class Player : MonoBehaviour
 
         stunned = false;
         animator.SetBool("Stunned", stunned);
+    }
+
+    private void ResetItemCarregado()
+    {
+        currentItem = ItemScript.ItemType.None;
+        itemCarregadoSpriteRenderer.sprite = null;
     }
 
 }
