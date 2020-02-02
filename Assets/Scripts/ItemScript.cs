@@ -15,8 +15,6 @@ public class ItemScript : MonoBehaviour
     };
 
     public ItemType itemType;
-    public Vector3 velocity;
-    public float speed;
 
     public static GameObject ItemFromType(ItemType type)
     {
@@ -36,19 +34,5 @@ public class ItemScript : MonoBehaviour
           // transform.Translate(position);
           
     }
-
-    public void Throw(Vector3 direction)
-    {
-        // tansform.Rotate()
-        velocity = new Vector3(1,0,0);
-        GetComponent<Collider2D>().isTrigger = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.Translate(velocity * speed * Time.deltaTime);
-    }
-
 
 }
