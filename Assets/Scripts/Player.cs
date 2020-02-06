@@ -125,6 +125,24 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
+        switch (collision.gameObject.tag)
+        {
+            case "Item":
+                var itemScript = collision.gameObject.GetComponent<ItemScript>();
+                currentItem = itemScript.itemType;
+                itemCarregadoSpriteRenderer.sprite = GameManager.Instance.sprites[(int)currentItem];
+                GameObject.Destroy(collision.gameObject);
+                break;
+            case "ItemLancado":
+                var itemLancado = collision.gameObject.GetComponent<ItemLancado>();
+                if (itemLancado.owner != controller)
+                {
+                    GameObject.Destroy(collision.gameObject);
+                    StartCoroutine(Stun(itemLancado));
+                }
+                break;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
